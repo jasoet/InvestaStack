@@ -56,7 +56,7 @@
         <liquibase-maven-plugin.version>2.0.3</liquibase-maven-plugin.version>
         <maven-failsafe-plugin.version>2.10</maven-failsafe-plugin.version>
         <rest-assured.version>1.6.2</rest-assured.version>
-        <tiles.version>3.0.1</tiles.version>
+        <tiles.version>2.2.2</tiles.version>
         <jstl.version>1.2</jstl.version>
         <velocity.version>1.7</velocity.version>
         <cglib.version>2.2</cglib.version>
