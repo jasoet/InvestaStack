@@ -10,7 +10,8 @@
 
     <beans profile="repository">
 
-        <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+        <!--<bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>-->
+        <bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder"/>
 
         <bean id="databaseProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
             <property name="locations">

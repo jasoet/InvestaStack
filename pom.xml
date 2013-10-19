@@ -10,6 +10,7 @@
 
     <modules>
         <module>investastack-repository</module>
+        <module>investastack-web</module>
     </modules>
     <!--     <scm>
             <url>https://bitbucket.org/jasoet/i-risk</url>

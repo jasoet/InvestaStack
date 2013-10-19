@@ -13,8 +13,8 @@ import com.secondstack.investa.domain.Role;
 import com.secondstack.investa.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.crypto.codec.Hex;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,7 +114,7 @@ public class InitialDataProvider {
 
                 String salt = new String(Hex.encode(staff.getUsername().getBytes()));
                 staff.setSalt(salt);
-                staff.setPassword(passwordEncoder.encode(staff.getPassword()));
+                staff.setPassword(passwordEncoder.encodePassword(staff.getPassword(), salt));
                 staffDAO.save(staff);
 
                 logSystemActivityDAO.save(new LogSystemActivity(InitialDataProvider.class.getName(),

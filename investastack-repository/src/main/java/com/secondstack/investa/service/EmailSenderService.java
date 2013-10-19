@@ -2,6 +2,7 @@ package com.secondstack.investa.service;
 
 import com.secondstack.investa.dao.EmailDAO;
 import com.secondstack.investa.domain.Email;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("emailSenderService")
 public class EmailSenderService {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(EmailSenderService.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private EmailDAO emailDAO;
     @Autowired
@@ -33,11 +34,11 @@ public class EmailSenderService {
         try {
 
             sendEmail(toSend.getTo(), toSend.getSubject(), toSend.getText());
-            log.info("Mail Send Successful to : " + toSend.getTo() + " With Subject: " + toSend.getSubject());
+            logger.info("Mail Send Successful to : " + toSend.getTo() + " With Subject: " + toSend.getSubject());
         } catch (MailException me) {
             toSend.setDelivered(false);
             emailDAO.save(toSend);
-            log.error("MailException : " + me.getMessage());
+            logger.error("MailException : " + me.getMessage());
         }
     }
 
