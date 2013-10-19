@@ -1,15 +1,9 @@
-package com.secondstack.investa;
+package com.secondstack.investa.main;
 
 import com.secondstack.investa.dao.BeritaDAO;
 import com.secondstack.investa.domain.Berita;
 import com.secondstack.investa.util.provider.InitialDataProvider;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -27,21 +21,16 @@ import java.util.List;
  * @jasoet
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath*:META-INF/spring/**/applicationContext*.xml")
-@ActiveProfiles({"repository"})
-public class DaoRepositoryTest {
+public class Main {
 
-    @Autowired
-    @Qualifier("beritaDAOImpl")
-    private BeritaDAO beritaDAO;
+    public static void main(String[] args) {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath*:META-INF/spring/**/applicationContext*.xml");
+        applicationContext.getEnvironment().setActiveProfiles("repository");
+        applicationContext.refresh();
 
-    @Autowired
-    @Qualifier("initDataProvider")
-    private InitialDataProvider initialDataProvider;
+        BeritaDAO beritaDAO = applicationContext.getBean("beritaDAOImpl",BeritaDAO.class);
+        InitialDataProvider initialDataProvider = applicationContext.getBean(InitialDataProvider.class);
 
-    @Test
-    public void insertData() {
         long now = System.currentTimeMillis();
         System.out.println("Test Start " + now);
 

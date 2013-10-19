@@ -39,7 +39,7 @@ public class InitialDataProvider {
     @Autowired
     private ConfigPropertyDAO configPropertyDAO;
 
-    private void provideInitData() {
+    public void provideInitData() {
         if (roleDAO != null && staffDAO != null && paketDAO != null && logSystemActivityDAO != null && passwordEncoder != null) {
             if (roleDAO.count() == 0) {
                 if (roleDAO.get("ROLE_ADMIN") == null) {
